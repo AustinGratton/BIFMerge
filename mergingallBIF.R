@@ -1,7 +1,7 @@
 library(readxl)
 
 #read in cleaned data
-cleaned = read_excel("C:\\Users\\Austin\\Downloads\\morphII_cleaned_v2.csv.xlsx")
+cleaned = read_excel("D:\\Downloads\\morphII_cleaned_v2.xlsx")
 
 #establish function
 BIF.Merge <- function(fn, cln.dat){
@@ -13,7 +13,7 @@ BIF.Merge <- function(fn, cln.dat){
 }
 
 #set working directory to where the feature files are
-setwd("D:\\Features\\MorphII_full\\BIF")
+setwd("E:\\Features\\MorphII_full\\BIF")
 
 #grab a list of all csv files in folder
 temp = list.files(pattern="*.csv")
@@ -32,3 +32,13 @@ for (i in 1:length(ls())){
   }
 }
 
+merg.dat = BIF.Merge(MorphII_BIF_s7.37_g1.0_std_full,cleaned)
+assign(ls()[44],merg.dat)
+
+setwd("E:\\Features\\MorphII_full\\Merged BIF")
+
+for (i in 1:length(ls())){
+  if (grepl("Morph",ls()[i]) == TRUE) {
+    write.csv(get(ls()[i]),paste(ls()[i],".csv",sep = ""))
+  }
+}
