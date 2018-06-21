@@ -24,6 +24,7 @@ list2env(
          read.csv,header=FALSE), envir = .GlobalEnv)
 
 #run the merge function on all data
+#worked for about half then crashed
 for (i in 1:length(ls())){
   if (grepl("Morph",ls()[i]) == TRUE) {
     merg.dat = BIF.Merge(get(ls()[i]),cleaned)
